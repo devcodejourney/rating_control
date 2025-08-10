@@ -1,1 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Star Rating</title>
+  <style>
+    .star-rating::after {
+      content: "★★★★★";
+      display: inline-block;
+      font-size: 100px;
+      background: linear-gradient(
+        90deg,
+        gold var(--rating-percent),
+        lightgray var(--rating-percent)
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
+    .star-rating {
+      --rating: 4.5; /* fallback */
+      --rating-percent: calc(var(--rating) / 5 * 100%);
+    }
+  </style>
+</head>
+<body>
+
+  <span class="star-rating" data-rating="3.5"></span>
+
+  <script>
+    document.querySelectorAll('.star-rating').forEach(el => {
+      const rating = parseFloat(el.dataset.rating);
+      el.style.setProperty('--rating', rating);
+    });
+  </script>
+
+</body>
+</html>
